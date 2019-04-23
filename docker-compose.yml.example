@@ -1,0 +1,36 @@
+version: "3"
+services:
+  Zircon_app:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/dockerfile_Zircon
+      args:
+        - PORT
+        - MONGO_USERNAME
+        - MONGO_PASSWORD
+        - MONGO_DATABASE=${MONGO_INITDB_DATABASE}
+        - DB_HOST=Zircon_database
+        - NODE_ENV
+    env_file: .env
+    restart: always
+    ports:
+      - 7000:7000
+    depends_on:
+      - Zircon_database
+    networks:
+      - default
+  Zircon_database:
+    image: mongo:3.4-jessie
+    env_file: ./.env
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - Zircon_database_disk:/data/db
+      - ./dockerfiles/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh
+    networks:
+      - default
+volumes:
+  Zircon_database_disk:
+networks:
+  default:
