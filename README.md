@@ -1,3 +1,5 @@
+> Note: Zicron is old and outdated and I decided to upload these files shortly before its death. Zicron has evolved into more advanced, closed source project called [Nekovault](https://www.nekovault.moe/), this project is not availible on github but if you wish you can explore and use the old code of Zicron however you wish.
+
 # Zircon
 
 <p align="center">
